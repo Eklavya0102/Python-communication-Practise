@@ -298,13 +298,13 @@ thread.start()
 ```text
 Python-Network-Programming/
 │
-├── TCP/
+├── TCP-Client-Server/
 │   ├── client.py
 │   ├── server.py
 │   ├── chat_client.py
 │   └── chat_server.py
 │
-├── UDP/
+├── UDP-Client-Server/
 │   ├── client.py
 │   └── server.py
 │
