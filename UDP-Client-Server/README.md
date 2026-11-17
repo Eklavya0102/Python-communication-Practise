@@ -1,6 +1,12 @@
 # UDP Client-Server Communication Using Python
 
-\<p align="center">   \<img src="[https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white](https://img.shields.io/badge/Python-3.x-blue?logo=python\&logoColor=white)" alt="Python">   \<img src="[https://img.shields.io/badge/Protocol-UDP-orange](https://img.shields.io/badge/Protocol-UDP-orange)" alt="UDP">   \<img src="[https://img.shields.io/badge/Socket-Programming-purple](https://img.shields.io/badge/Socket-Programming-purple)" alt="Socket Programming"> \</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Protocol-UDP-orange" alt="UDP">
+  <img src="https://img.shields.io/badge/Socket-Programming-purple" alt="Socket Programming">
+</p>
+
 
 ## 1. Introduction
 

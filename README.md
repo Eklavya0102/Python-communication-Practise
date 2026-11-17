@@ -1,12 +1,14 @@
 # Python Network Programming – TCP & UDP Client-Server Communication
 
-\<p align="center">
-&#x20; \<img src="[https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white](https://img.shields.io/badge/Python-3.x-blue?logo=python\&logoColor=white)" alt="Python">
-&#x20; \<img src="[https://img.shields.io/badge/Protocol-TCP-green](https://img.shields.io/badge/Protocol-TCP-green)" alt="TCP">
-&#x20; \<img src="[https://img.shields.io/badge/Protocol-UDP-orange](https://img.shields.io/badge/Protocol-UDP-orange)" alt="UDP">
-&#x20; \<img src="[https://img.shields.io/badge/Domain-Computer%20Networks-purple](https://img.shields.io/badge/Domain-Computer%20Networks-purple)" alt="Computer Networks">
-&#x20; \<img src="[https://img.shields.io/badge/License-MIT-yellow](https://img.shields.io/badge/License-MIT-yellow)" alt="MIT License">
-\</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Protocol-TCP-green" alt="TCP">
+  <img src="https://img.shields.io/badge/Protocol-UDP-orange" alt="UDP">
+  <img src="https://img.shields.io/badge/Domain-Computer%20Networks-purple" alt="Computer Networks">
+  <img src="https://img.shields.io/badge/License-MIT-yellow" alt="MIT License">
+</p>
+
 
 ## 1. Introduction
 
