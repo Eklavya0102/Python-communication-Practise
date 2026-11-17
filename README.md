@@ -1,604 +1,408 @@
 # Python Network Programming – TCP & UDP Client-Server Communication
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
-![TCP](https://img.shields.io/badge/Protocol-TCP-green)
-![UDP](https://img.shields.io/badge/Protocol-UDP-orange)
-![Networking](https://img.shields.io/badge/Domain-Computer%20Networks-purple)
-![Status](https://img.shields.io/badge/Status-Learning%20%26%20Practice-success)
+\<p align="center">
+&#x20; \<img src="[https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white](https://img.shields.io/badge/Python-3.x-blue?logo=python\&logoColor=white)" alt="Python">
+&#x20; \<img src="[https://img.shields.io/badge/Protocol-TCP-green](https://img.shields.io/badge/Protocol-TCP-green)" alt="TCP">
+&#x20; \<img src="[https://img.shields.io/badge/Protocol-UDP-orange](https://img.shields.io/badge/Protocol-UDP-orange)" alt="UDP">
+&#x20; \<img src="[https://img.shields.io/badge/Domain-Computer%20Networks-purple](https://img.shields.io/badge/Domain-Computer%20Networks-purple)" alt="Computer Networks">
+&#x20; \<img src="[https://img.shields.io/badge/License-MIT-yellow](https://img.shields.io/badge/License-MIT-yellow)" alt="MIT License">
+\</p>
 
 ## 1. Introduction
 
-This repository contains practical implementations of **TCP (Transmission Control Protocol)** and **UDP (User Datagram Protocol)** client-server communication using Python socket programming.
+**Python Communication Practise** is an educational repository containing practical implementations of TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) client-server communication using Python socket programming.
 
-The project is developed to understand the fundamentals of computer networking, transport layer protocols, and client-server architecture.
+This project helps students and beginners understand computer networking, transport layer protocols, socket programming, and client-server architecture through practical implementation.
 
-It demonstrates how two applications communicate over a network using different transport protocols, exchange messages, and handle data transmission.
+It demonstrates how two applications communicate over a network, exchange messages, and use different transport protocols.
 
-The repository includes basic TCP and UDP communication programs along with a TCP Chat Application that demonstrates continuous two-way communication using multithreading.
+The repository includes:
 
-Both protocols are implemented using Python's built-in `socket` module without requiring any external networking libraries.
+- Basic TCP client-server communication.
+- TCP chat application using separate server and client programs.
+- Basic UDP client-server communication.
+- UDP chat application using separate server and client programs.
+- TCP vs UDP comparison.
+- Python socket programming documentation.
 
----
+## 2. Project Objectives
 
-## 2. Project Overview
+- Understand the fundamentals of computer networking.
+- Learn TCP and UDP transport layer protocols.
+- Understand client-server architecture.
+- Implement socket programming using Python.
+- Understand connection-oriented and connectionless communication.
+- Work with IP addresses and port numbers.
+- Exchange messages between client and server applications.
+- Explore interactive chat communication.
 
-The repository is divided into two main sections:
+## 3. Project Overview
 
 ### A. TCP Client-Server Communication
 
-TCP is a connection-oriented transport layer protocol that provides reliable, ordered, and error-checked data transmission.
+TCP is a connection-oriented transport layer protocol that provides reliable and ordered data transmission.
 
-In this implementation:
+The TCP implementation demonstrates:
 
-- The server creates a TCP socket and waits for client connections.
-- The client establishes a connection with the server.
-- The client sends a message to the server.
-- The server receives the message and sends a response.
-- Both sides close the connection after communication.
+- Creating TCP client and server sockets.
+- Binding the server to an IP address and port.
+- Listening for incoming connections.
+- Accepting client connections.
+- Sending and receiving messages.
+- Closing the connection.
 
-**Additional Implementation – TCP Chat Application:**
+**TCP Chat Application**
 
-- Enables continuous two-way communication between client and server.
-- Supports multiple messages during a single connection.
-- Uses Python multithreading to handle sending and receiving simultaneously.
-- Allows users to terminate the chat using the `exit` command.
+The TCP chat example contains separate server and client programs. It demonstrates interactive message exchange between the two applications.
 
 ### B. UDP Client-Server Communication
 
 UDP is a connectionless transport layer protocol that allows applications to exchange data without establishing a connection beforehand.
 
-In this implementation:
+The UDP implementation demonstrates:
 
-- The server creates a UDP socket and binds it to an IP address and port.
-- The client sends a datagram directly to the server.
-- The server receives the message and identifies the sender.
-- The server sends a response to the client.
-- Both sides close their sockets after communication.
+- Creating UDP client and server sockets.
+- Binding the server to an IP address and port.
+- Sending datagrams using `sendto()`.
+- Receiving datagrams using `recvfrom()`.
+- Identifying the sender's address.
+- Sending responses to clients.
 
----
+**UDP Chat Application**
 
-## 3. Understanding TCP
+The UDP chat example also contains separate server and client programs. It demonstrates message exchange using UDP datagrams.
 
-### What is TCP?
+## 4. Understanding TCP and UDP
 
-**TCP (Transmission Control Protocol)** is a connection-oriented transport layer protocol that ensures reliable and ordered delivery of data between devices over a network.
+| Basis               | TCP                           | UDP                    |
+| ------------------- | ----------------------------- | ---------------------- |
+| Full Form           | Transmission Control Protocol | User Datagram Protocol |
+| Connection          | Connection-oriented           | Connectionless         |
+| Reliability         | Reliable delivery             | Best-effort delivery   |
+| Data Transmission   | Byte stream                   | Datagrams              |
+| Acknowledgement     | Built-in                      | Not built-in           |
+| Retransmission      | Supported                     | Not built-in           |
+| Data Ordering       | Maintained                    | Not guaranteed         |
+| Header Size         | 20–60 bytes                   | 8 bytes                |
+| Handshake           | Three-way handshake           | No handshake           |
+| Common Applications | Web, email, file transfer     | Gaming, streaming, DNS |
 
-It establishes a connection before transmitting data and uses acknowledgements, sequence numbers, retransmissions, flow control, and congestion control to support reliable communication.
+### When to Use TCP?
 
-TCP operates at the **Transport Layer (Layer 4)** of the OSI model.
+TCP is suitable when reliable and ordered data delivery is important, such as file transfers, web communication, and email.
 
-### Characteristics of TCP
+### When to Use UDP?
 
-- Connection-oriented communication.
-- Reliable data transmission.
-- Ordered data delivery.
-- Error detection using checksums.
-- Acknowledgement mechanism.
-- Retransmission of lost segments.
-- Flow control using a sliding window.
-- Congestion control.
-- Full-duplex communication.
-- Byte-stream-based transmission.
+UDP is suitable when low latency and low communication overhead are important, such as online gaming, voice calls, and real-time streaming.
 
-### TCP Three-Way Handshake
+For a detailed explanation, refer to [TCP vs UDP](docs/TCP_vs_UDP.md).
 
-TCP establishes a connection using three steps:
-
-1. **SYN:** Client requests a connection.
-2. **SYN-ACK:** Server acknowledges the request.
-3. **ACK:** Client confirms the connection.
-
-After these steps, data transmission begins.
-
-### TCP Applications
-
-- Web browsing (HTTP/HTTPS).
-- Email communication.
-- File transfer.
-- Remote access (SSH).
-- Database communication.
-- Chat applications.
-
----
-
-## 4. Understanding UDP
-
-### What is UDP?
-
-**UDP (User Datagram Protocol)** is a connectionless transport layer protocol that allows applications to transmit data in the form of independent datagrams without establishing a connection beforehand.
-
-It provides low communication overhead and is commonly used in applications where speed and low latency are important.
-
-UDP operates at the **Transport Layer (Layer 4)** of the OSI model.
-
-### Characteristics of UDP
-
-- Connectionless communication.
-- No connection establishment.
-- No built-in acknowledgement mechanism.
-- No automatic retransmission.
-- No guarantee of packet ordering.
-- Low protocol overhead.
-- Fast communication.
-- Datagram-based transmission.
-- Checksum-based error detection.
-- No built-in flow control.
-- No built-in congestion control.
-
-### UDP Communication Process
-
-1. Client creates a UDP socket.
-2. Client specifies the server's IP address and port.
-3. Client sends a datagram using `sendto()`.
-4. Server receives the datagram using `recvfrom()`.
-5. Server processes the message.
-6. Server sends a response using `sendto()`.
-
-Unlike TCP, UDP does not require a three-way handshake.
-
-### UDP Applications
-
-- Online gaming.
-- Live video streaming.
-- Voice and video calls.
-- DNS queries.
-- DHCP.
-- Real-time broadcasting.
-
----
-
-## 5. Difference Between TCP and UDP
-
-TCP and UDP are two major transport layer protocols used for communication over IP networks. Both serve the purpose of transferring data between applications, but they differ in their communication methods, reliability, speed, and applications.
-
-| Basis | TCP | UDP |
-|---|---|---|
-| Full Form | Transmission Control Protocol | User Datagram Protocol |
-| Connection | Connection-oriented | Connectionless |
-| Reliability | Reliable | Best-effort delivery |
-| Speed | Generally slower | Generally faster |
-| Data Transmission | Byte stream | Datagrams |
-| Acknowledgement | Supported | Not built-in |
-| Error Detection | Checksum | Checksum |
-| Retransmission | Supported | Not built-in |
-| Data Ordering | Maintains ordered delivery | No ordering guarantee |
-| Flow Control | Available | Not built-in |
-| Congestion Control | Available | Not built-in |
-| Header Size | Minimum 20 bytes | 8 bytes |
-| Handshake | Three-way handshake | No handshake |
-| Communication | Full-duplex | Supports bidirectional datagram exchange |
-| Broadcasting | Not supported directly | Supported |
-| Applications | Web, email, file transfer | Gaming, streaming, DNS |
-
-### Which One Should We Use?
-
-**Use TCP when:**
-
-- Data must reach the destination reliably.
-- Data must arrive in the correct order.
-- Accuracy is more important than low latency.
-- File transfer or web communication is required.
-- Continuous messaging is needed.
-
-**Use UDP when:**
-
-- Low latency is important.
-- Occasional packet loss can be tolerated.
-- Real-time communication is required.
-- Fast transmission is preferred over built-in delivery guarantees.
-
-**Note:** UDP applications can implement their own reliability mechanisms when required. TCP's reliability features also introduce additional communication overhead.
-
----
-
-## 6. TCP vs UDP – Communication Flow
+## 5. TCP and UDP Communication Flow
 
 ### TCP Communication
 
 ```text
-       CLIENT                     SERVER
-          |                          |
-          | -------- SYN ----------> |
-          | <------ SYN-ACK -------- |
-          | -------- ACK ----------> |
-          |                          |
-          | ------ DATA -----------> |
-          | <----- ACK ------------- |
-          | <----- RESPONSE -------- |
-          |                          |
-          | ------ FIN ------------> |
-          | <----- ACK ------------- |
-          |                          |
-          |     CONNECTION CLOSED   |
+       CLIENT                         SERVER
+          |                              |
+          | -------- SYN --------------> |
+          | <------ SYN-ACK ------------ |
+          | -------- ACK --------------> |
+          |                              |
+          | -------- DATA -------------> |
+          | <------ RESPONSE ----------- |
+          |                              |
+          |       CONNECTION CLOSED     |
 ```
+
+TCP establishes a connection using a three-way handshake before data transmission.
 
 ### UDP Communication
 
 ```text
-       CLIENT                     SERVER
-          |                          |
-          |                          |
-          | ------ DATA -----------> |
-          |                          |
-          | <----- RESPONSE -------- |
-          |                          |
-          |                          |
-          |     COMMUNICATION ENDS   |
+       CLIENT                         SERVER
+          |                              |
+          | -------- DATA -------------> |
+          |                              |
+          | <------ RESPONSE ----------- |
+          |                              |
+          |       COMMUNICATION ENDS    |
 ```
 
-*These diagrams illustrate simplified communication flows. TCP connection termination generally uses a four-step FIN/ACK exchange.*
+UDP sends datagrams without requiring a connection handshake.
 
----
+*These diagrams illustrate simplified communication flows.*
 
-## 7. Python Socket Programming
+## 6. Python Socket Programming
 
-Python provides a built-in `socket` module that allows applications to communicate over a network.
+Python provides the built-in `socket` module for network communication.
 
-A socket acts as an endpoint for sending and receiving data.
-
-### TCP Socket Creation
+### TCP Socket
 
 ```python
-socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+import socket
+
+client = socket.socket(
+    socket.AF_INET,
+    socket.SOCK_STREAM
+)
 ```
 
-- `AF_INET`: Specifies IPv4 addressing.
-- `SOCK_STREAM`: Specifies TCP communication.
+- `AF_INET` specifies IPv4 addressing.
+- `SOCK_STREAM` specifies TCP communication.
 
-### UDP Socket Creation
+### UDP Socket
 
 ```python
-socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+import socket
+
+client = socket.socket(
+    socket.AF_INET,
+    socket.SOCK_DGRAM
+)
 ```
 
-- `AF_INET`: Specifies IPv4 addressing.
-- `SOCK_DGRAM`: Specifies UDP communication.
+- `AF_INET` specifies IPv4 addressing.
+- `SOCK_DGRAM` specifies UDP communication.
 
 ### Important Socket Functions
 
-| Function | Protocol | Purpose |
-|---|---|---|
-| `socket()` | Both | Creates a socket |
-| `bind()` | Both | Assigns IP and port |
-| `listen()` | TCP | Waits for connections |
-| `accept()` | TCP | Accepts a client connection |
-| `connect()` | TCP | Establishes a connection |
-| `send()` | TCP | Sends data |
-| `sendall()` | TCP | Sends all supplied data |
-| `recv()` | TCP | Receives data |
-| `sendto()` | UDP | Sends a datagram |
-| `recvfrom()` | UDP | Receives a datagram and sender address |
-| `close()` | Both | Closes a socket |
+| Function               | Protocol | Purpose                                |
+| ---------------------- | -------- | -------------------------------------- |
+| `socket()`             | Both     | Creates a socket                       |
+| `bind()`               | Both     | Assigns an IP address and port         |
+| `listen()`             | TCP      | Waits for incoming connections         |
+| `accept()`             | TCP      | Accepts a client connection            |
+| `connect()`            | TCP      | Establishes a connection               |
+| `send()` / `sendall()` | TCP      | Sends data                             |
+| `recv()`               | TCP      | Receives data                          |
+| `sendto()`             | UDP      | Sends a datagram                       |
+| `recvfrom()`           | UDP      | Receives a datagram and sender address |
+| `close()`              | Both     | Closes a socket                        |
 
-### Additional Python Concept: Multithreading
+For more details, refer to [Python Socket Programming](docs/socket_programming.md).
 
-The TCP Chat Application uses Python's built-in `threading` module.
-
-Multithreading allows multiple tasks to execute concurrently within a program.
-
-In the chat application:
-
-- One thread handles incoming messages.
-- The main thread handles outgoing messages.
-- Both operations work independently, allowing continuous two-way communication.
-
-Example:
-
-```python
-import threading
-
-thread = threading.Thread(target=receive_messages)
-thread.start()
-```
-
----
-
-## 8. Project Structure
+## 7. Repository Structure
 
 ```text
-Python-Network-Programming/
+Python-communication-Practise/
 │
 ├── TCP-Client-Server/
-│   ├── client.py
 │   ├── server.py
-│   ├── chat_client.py
-│   └── chat_server.py
+│   ├── client.py
+│   ├── README.md
+│   │
+│   └── Examples/
+│       ├── chat_server.py
+│       └── chat_client.py
 │
 ├── UDP-Client-Server/
+│   ├── server.py
 │   ├── client.py
-│   └── server.py
+│   ├── README.md
+│   │
+│   └── Examples/
+│       ├── chat_server.py
+│       └── chat_client.py
 │
+├── docs/
+│   ├── TCP_vs_UDP.md
+│   └── socket_programming.md
+│
+├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 
 ### Directory Description
 
-| File / Folder | Description |
-|---|---|
-| `TCP/` | Contains TCP communication programs |
-| `TCP/client.py` | Basic TCP client |
-| `TCP/server.py` | Basic TCP server |
-| `TCP/chat_client.py` | TCP chat client using multithreading |
-| `TCP/chat_server.py` | TCP chat server using multithreading |
-| `UDP/` | Contains UDP communication programs |
-| `UDP/client.py` | Basic UDP client |
-| `UDP/server.py` | Basic UDP server |
-| `README.md` | Main project documentation |
+| File / Folder                 | Description                      |
+| ----------------------------- | -------------------------------- |
+| `TCP-Client-Server/`          | TCP client-server implementation |
+| `TCP-Client-Server/server.py` | TCP server program               |
+| `TCP-Client-Server/client.py` | TCP client program               |
+| `TCP-Client-Server/Examples/` | TCP chat application             |
+| `chat_server.py`              | TCP chat server                  |
+| `chat_client.py`              | TCP chat client                  |
+| `UDP-Client-Server/`          | UDP client-server implementation |
+| `UDP-Client-Server/server.py` | UDP server program               |
+| `UDP-Client-Server/client.py` | UDP client program               |
+| `UDP-Client-Server/Examples/` | UDP chat application             |
+| `chat_server.py`              | UDP chat server                  |
+| `chat_client.py`              | UDP chat client                  |
+| `docs/`                       | Networking documentation         |
+| `requirements.txt`            | Project dependencies             |
+| `LICENSE`                     | MIT License                      |
 
----
-
-## 9. Requirements
+## 8. Requirements
 
 - Python 3.x.
-- Basic knowledge of Python programming.
-- Basic understanding of computer networks.
-- Code editor or terminal.
+- A code editor or terminal.
+- Basic knowledge of Python and computer networks.
+- Two terminal windows for client-server communication.
 
-**Dependencies:** No external Python packages are required. The project uses Python's built-in `socket` and `threading` modules.
+**Dependencies:** The implementations use Python's built-in `socket` module. No external networking packages are required for the described programs.
 
----
-
-## 10. How to Run the Project
+## 9. Installation and Setup
 
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Eklavya0102/Python-communication-Practise.git
 ```
 
 ### Step 2: Navigate to the Repository
 
 ```bash
-cd Python-Network-Programming
+cd Python-communication-Practise
 ```
 
-### A. Running TCP Client-Server
-
-**Terminal 1 – Start TCP Server**
+### Step 3: Check Python Installation
 
 ```bash
-python TCP/server.py
+python --version
 ```
 
-**Terminal 2 – Start TCP Client**
+## 10. How to Run the Project
+
+For each implementation, open two terminal windows. Start the server first, then run the client.
+
+### A. TCP Client-Server Communication
+
+**Terminal 1 – TCP Server**
 
 ```bash
-python TCP/client.py
+python TCP-Client-Server/server.py
 ```
 
-### B. Running TCP Chat Application
-
-**Terminal 1 – Start TCP Chat Server**
+**Terminal 2 – TCP Client**
 
 ```bash
-python TCP/chat_server.py
-```
-
-**Terminal 2 – Start TCP Chat Client**
-
-```bash
-python TCP/chat_client.py
-```
-
-Once connected, both sides can send and receive messages continuously.
-
-Type `exit` to end the chat. For a clean shutdown of this basic implementation, type `exit` on both sides.
-
-### C. Running UDP Client-Server
-
-**Terminal 1 – Start UDP Server**
-
-```bash
-python UDP/server.py
-```
-
-**Terminal 2 – Start UDP Client**
-
-```bash
-python UDP/client.py
-```
-
-**Important:** Always start the server before executing the client. Open two separate terminals for each communication experiment.
-
----
-
-## 11. Expected Output
-
-### A. TCP Communication
-
-**Server Output**
-
-```text
-Server is waiting for connection...
-Connected to: ('127.0.0.1', 54321)
-Client: Hello Server!
-```
-
-**Client Output**
-
-```text
-Server: Hello Client! Message received.
+python TCP-Client-Server/client.py
 ```
 
 ### B. TCP Chat Application
 
-**Server Output**
+**Terminal 1 – TCP Chat Server**
 
-```text
-Chat Server is waiting for connection...
-Client connected: ('127.0.0.1', 54321)
-
-Client: Hello Server!
-You: Hello Client!
-Client: How are you?
-You: I am fine!
-Client ended the chat.
+```bash
+python TCP-Client-Server/Examples/chat_server.py
 ```
 
-**Client Output**
+**Terminal 2 – TCP Chat Client**
 
-```text
-Connected to Chat Server!
-Type 'exit' to end the chat.
-
-You: Hello Server!
-Server: Hello Client!
-You: How are you?
-Server: I am fine!
-You: exit
-Chat Client closed.
+```bash
+python TCP-Client-Server/Examples/chat_client.py
 ```
 
-### C. UDP Communication
+### C. UDP Client-Server Communication
 
-**Server Output**
+**Terminal 1 – UDP Server**
 
-```text
-UDP Server is waiting for messages...
-Connected to: ('127.0.0.1', 54321)
-Client: Hello Server!
+```bash
+python UDP-Client-Server/server.py
 ```
 
-**Client Output**
+**Terminal 2 – UDP Client**
 
-```text
-Server: Hello Client! Message received.
+```bash
+python UDP-Client-Server/client.py
 ```
 
-*Note: The temporary client port number may vary between executions.*
+### D. UDP Chat Application
 
----
+**Terminal 1 – UDP Chat Server**
 
-## 12. Common Concepts Used
+```bash
+python UDP-Client-Server/Examples/chat_server.py
+```
 
-### IP Address
+**Terminal 2 – UDP Chat Client**
 
-An IP address is a logical address used to identify a device on a network.
+```bash
+python UDP-Client-Server/Examples/chat_client.py
+```
 
-### Port Number
+**Important:** Start the server before the client. For local testing, use `127.0.0.1` as the server IP address if that matches the address configured in your programs.
 
-A port number identifies a particular application or service running on a device.
+## 11. Common Networking Concepts
 
-### Localhost
+| Concept     | Description                                    |
+| ----------- | ---------------------------------------------- |
+| IP Address  | Identifies a device on a network               |
+| Port Number | Identifies an application or service           |
+| Localhost   | `127.0.0.1`, the IPv4 loopback address         |
+| Client      | Application that initiates communication       |
+| Server      | Application that waits for incoming requests   |
+| Socket      | Endpoint for network communication             |
+| Datagram    | Independent unit of data transmitted using UDP |
 
-`127.0.0.1` is the IPv4 loopback address, also known as localhost. It allows communication between applications running on the same computer.
+## 12. Learning Outcomes
 
-### Client
+After completing this project, learners should be able to:
 
-A client is an application that initiates communication with another application.
+1. Understand the fundamentals of computer networking.
+2. Explain TCP and UDP transport layer protocols.
+3. Understand client-server architecture.
+4. Implement socket programming using Python.
+5. Differentiate connection-oriented and connectionless communication.
+6. Work with IP addresses and port numbers.
+7. Send and receive data over a network.
+8. Understand basic chat application communication.
 
-### Server
+## 13. Future Improvements
 
-A server is an application that waits for incoming requests and provides responses.
+Potential extensions include:
 
-### Socket
-
-A socket is an endpoint used for communication between two applications over a network.
-
-### Threading
-
-Threading allows multiple tasks to execute concurrently within a program. It is used in the TCP Chat Application to handle sending and receiving operations independently.
-
----
-
-## 13. Advantages and Limitations
-
-### TCP
-
-**Advantages**
-
-- Reliable data transmission.
-- Maintains data order.
-- Supports retransmission.
-- Provides flow and congestion control.
-- Suitable for accurate data transfer.
-
-**Limitations**
-
-- Connection establishment overhead.
-- More protocol overhead than UDP.
-- Retransmissions may increase latency.
-- Connection management consumes resources.
-
-### UDP
-
-**Advantages**
-
-- Low communication overhead.
-- No connection establishment required.
-- Suitable for real-time applications.
-- Supports broadcasting and multicasting.
-- Preserves individual datagram boundaries.
-
-**Limitations**
-
-- No guaranteed delivery.
-- No automatic retransmission.
-- No guaranteed packet ordering.
-- No built-in flow or congestion control.
-
----
-
-## 14. Learning Objectives
-
-The primary objectives of this project are:
-
-1. To understand the fundamentals of computer networking.
-2. To learn the TCP and UDP transport layer protocols.
-3. To understand client-server architecture.
-4. To implement socket programming using Python.
-5. To understand connection-oriented and connectionless communication.
-6. To work with IP addresses and port numbers.
-7. To understand the differences between TCP and UDP.
-8. To implement continuous two-way communication.
-9. To understand multithreading in Python.
-10. To gain practical experience in sending and receiving network data.
-
----
-
-## 15. Conclusion
-
-This project provides practical experience with two fundamental transport layer protocols: TCP and UDP.
-
-By implementing basic client-server communication, continuous TCP chat functionality, and UDP messaging using Python, it demonstrates the differences between connection-oriented and connectionless communication.
-
-TCP provides reliable and ordered data delivery, whereas UDP provides lightweight communication with lower overhead.
-
-The TCP Chat Application further demonstrates how multithreading enables simultaneous sending and receiving of messages.
-
-Understanding these concepts helps build a strong foundation in computer networking, socket programming, and network application development.
-
----
-
-## 16. Future Improvements
-
-The project can be extended with the following features:
-
-- Multiple-client TCP server implementation.
+- Multiple-client TCP server.
 - Group chat application.
-- UDP continuous messaging.
 - TCP file transfer.
+- UDP-based real-time applications.
 - DNS lookup program.
 - HTTP client-server communication.
-- Network port scanning.
-- Client-server communication between different computers.
-- Error handling and connection timeout mechanisms.
+- Improved error handling and connection timeout mechanisms.
 
----
+## 14. Documentation and Learning Resources
 
-## 17. References
+| Documentation                                    | Description                            |
+| ------------------------------------------------ | -------------------------------------- |
+| [TCP vs UDP](docs/TCP_vs_UDP.md)                 | Detailed comparison of TCP and UDP     |
+| [Socket Programming](docs/socket_programming.md) | Python socket programming fundamentals |
+| [TCP Client-Server](TCP-Client-Server/README.md) | TCP implementation and instructions    |
+| [UDP Client-Server](UDP-Client-Server/README.md) | UDP implementation and instructions    |
+
+## 15. References
 
 - [Python Socket Programming Documentation](https://docs.python.org/3/library/socket.html)
 - [Python Threading Documentation](https://docs.python.org/3/library/threading.html)
-- [RFC 9293 – Transmission Control Protocol (TCP)](https://www.rfc-editor.org/rfc/rfc9293)
-- [RFC 768 – User Datagram Protocol (UDP)](https://www.rfc-editor.org/rfc/rfc768)
+- [RFC 9293 – Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293)
+- [RFC 768 – User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768)
+
+## 16. Conclusion
+
+This project provides practical experience with two fundamental transport layer protocols: TCP and UDP.
+
+Through basic client-server programs and chat applications, it demonstrates how applications exchange information using connection-oriented and connectionless communication.
+
+TCP focuses on reliable and ordered data delivery, whereas UDP provides lightweight communication with lower overhead.
+
+The repository serves as a practical learning resource for students and beginners who want to develop a foundation in computer networking and Python network programming.
 
 ---
 
-**Technology:** Python 3 | Socket Programming | TCP | UDP | Multithreading
+## Author
+
+**Eklavya Chaudhary**
+
+**Technology:** Python 3 | Socket Programming | TCP | UDP
 
 **Category:** Computer Networks / Network Programming
 
-**Purpose:** Educational project for learning and practicing TCP and UDP client-server communication.
+**Purpose:** Educational project for learning and practising TCP and UDP client-server communication.
 
-**Author:** Eklavya Chaudhary
+**Repository:** [Python Communication Practise](https://github.com/Eklavya0102/Python-communication-Practise)
+
+**License:** MIT License
+
+---
+
+\<p align="center">   \<b>Learn. Code. Understand. Connect.\</b>   \<br>   If you find this repository helpful, consider giving it a ⭐ on GitHub! \</p>
